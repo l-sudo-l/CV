@@ -97,6 +97,26 @@
     .cert-card{width:52px;height:62px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:1px solid rgba(0,0,0,0.07)}
     .cert-ic{font-size:20px}
     .cert-lbl{font-size:6.5px;font-weight:600}
+    .cert-sep{width:1px;height:48px;background:rgba(0,0,0,0.1);margin:0 2px}
+    .prev-notas{background:#0a1220;flex-direction:column;gap:8px}
+    .nt-table{width:88%;border-radius:6px;overflow:hidden;border:0.5px solid rgba(96,165,250,0.25);font-family:'DM Mono',monospace;font-size:8px}
+    .nt-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;color:rgba(255,255,255,0.55)}
+    .nt-row>div{padding:5px 7px;border-bottom:0.5px solid rgba(96,165,250,0.12)}
+    .nt-row.nt-head{background:rgba(96,165,250,0.14);color:rgba(147,197,253,0.9);letter-spacing:.06em}
+    .nt-ok{color:#86efac}.nt-low{color:#fca5a5}
+    .nt-roles{display:flex;gap:5px}
+    .nt-role{font-size:7.5px;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:20px;background:rgba(96,165,250,0.1);color:rgba(147,197,253,0.75);border:0.5px solid rgba(96,165,250,0.2)}
+    .prev-kata{background:#1a2410;flex-direction:column;gap:6px}
+    .kt-arena{width:88%;height:96px;position:relative;border-radius:6px;background:repeating-linear-gradient(0deg,rgba(255,255,255,0.025) 0 16px,transparent 16px 32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.025) 0 16px,transparent 16px 32px);border:2px solid rgba(160,140,100,0.35)}
+    .kt-wall{position:absolute;background:rgba(160,140,100,0.55);border-radius:2px}
+    .kt-tank{position:absolute;font-size:18px;line-height:1}
+    .kt-t1{left:10%;top:55%;animation:ktMove1 3s ease-in-out infinite alternate}
+    .kt-t2{right:10%;top:12%;transform:scaleX(-1);animation:ktMove2 3.4s ease-in-out infinite alternate}
+    .kt-shot{position:absolute;width:6px;height:6px;border-radius:50%;background:#fde047;box-shadow:0 0 6px #fde047;top:62%;left:22%;animation:ktShot 1.6s linear infinite}
+    @keyframes ktMove1{from{top:55%}to{top:30%}}
+    @keyframes ktMove2{from{top:12%}to{top:60%}}
+    @keyframes ktShot{from{left:22%;opacity:1}to{left:80%;opacity:0}}
+    .kt-hud{font-family:'DM Mono',monospace;font-size:8px;color:rgba(253,224,71,0.6);letter-spacing:.1em}
     .prev-ecom{background:#130820;flex-direction:column;gap:10px}
     .pe-chrome{width:88%;height:24px;background:rgba(255,255,255,0.05);border-radius:5px;display:flex;align-items:center;padding:0 8px;gap:6px}
     .pe-dot{width:6px;height:6px;border-radius:50%}
@@ -202,6 +222,8 @@
       .prev-mv{background:#0a0412!important}
       .prev-pong,.prev-si{background:#000!important}
       .prev-ark{background:#0d0020!important}
+      .prev-notas{background:#0a1220!important}
+      .prev-kata{background:#1a2410!important}
       .hero-tag,.section-label{color:#c8f07a!important}
       .hero-name em{color:#c8f07a!important}
       .pill-accent{background:#c8f07a!important;color:#0a0a0a!important;border-color:#c8f07a!important}
@@ -287,7 +309,7 @@
   </div>
 
   <div class="section">
-    <div class="section-label">Proyectos — 8 repositorios</div>
+    <div class="section-label">Proyectos — 10 repositorios</div>
     <div class="projects-grid">
 
       <div class="proj-card full" onclick="openModal('certs')">
@@ -295,13 +317,16 @@
           <div class="cert-card" style="background:#fff8e1"><div class="cert-ic">📄</div><div class="cert-lbl" style="color:#e65100">HTML/CSS</div></div>
           <div class="cert-card" style="background:#fffde7"><div class="cert-ic">⚡</div><div class="cert-lbl" style="color:#f57f17">JavaScript</div></div>
           <div class="cert-card" style="background:#e3f2fd"><div class="cert-ic">⚛️</div><div class="cert-lbl" style="color:#1565c0">React</div></div>
+          <div class="cert-sep"></div>
+          <div class="cert-card" style="background:#e8f5e9"><div class="cert-ic">✈️</div><div class="cert-lbl" style="color:#2e7d32">AeroHack</div></div>
+          <div class="cert-card" style="background:#e8eaf6"><div class="cert-ic">💧</div><div class="cert-lbl" style="color:#283593">Navathon III</div></div>
         </div>
         <div class="proj-info">
-          <div class="proj-tech"><span class="tech-tag">Coderhouse</span><span class="tech-tag">3 cursos certificados</span></div>
+          <div class="proj-tech"><span class="tech-tag">Coderhouse</span><span class="tech-tag">3 cursos certificados</span><span class="tech-tag">Hackathons</span><span class="tech-tag">2 participaciones</span></div>
           <div class="proj-name">Certificados Académicos</div>
-          <div class="proj-desc">Repositorio centralizado con todos los certificados de formación: HTML/CSS, JavaScript , React, etc. Organizados por curso y fecha de finalización.</div>
+          <div class="proj-desc">Repositorio centralizado con todos mis certificados: cursos de HTML/CSS, JavaScript y React en Coderhouse, más el Taller AeroHack Joven 2025 y la hackathon Navathon III 2026.</div>
           <div class="proj-actions">
-            <a class="proj-btn primary" href="https://github.com/l-sudo-l/Certificados-CoderHouse" target="_blank" rel="noopener" onclick="event.stopPropagation()">Ver certificados ↗</a>
+            <a class="proj-btn primary" href="https://github.com/l-sudo-l/Certificados" target="_blank" rel="noopener" onclick="event.stopPropagation()">Ver certificados ↗</a>
             <button class="proj-btn" onclick="event.stopPropagation();openModal('certs')">Detalles</button>
           </div>
         </div>
@@ -327,6 +352,27 @@
           <div class="proj-actions">
             <a class="proj-btn primary" href="https://github.com/l-sudo-l/loDePepe" target="_blank" rel="noopener" onclick="event.stopPropagation()">Ver repo ↗</a>
             <button class="proj-btn" onclick="event.stopPropagation();openModal('lodepepe')">Detalles</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card full" onclick="openModal('la35notas')">
+        <div class="proj-preview prev-notas">
+          <div class="nt-roles"><span class="nt-role">Admin</span><span class="nt-role">Preceptor</span><span class="nt-role">Profesor</span><span class="nt-role">Alumno</span></div>
+          <div class="nt-table">
+            <div class="nt-row nt-head"><div>MATERIA</div><div>1° P</div><div>2° P</div><div>PROM</div></div>
+            <div class="nt-row"><div>Programación</div><div>9</div><div>8</div><div class="nt-ok">8.5</div></div>
+            <div class="nt-row"><div>Redes</div><div>7</div><div>8</div><div class="nt-ok">7.5</div></div>
+            <div class="nt-row"><div>Matemática</div><div>5</div><div>6</div><div class="nt-low">5.5</div></div>
+          </div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-tech"><span class="tech-tag">Node.js</span><span class="tech-tag">SQLite</span><span class="tech-tag">JavaScript</span><span class="tech-tag">HTML/CSS</span><span class="tech-tag">RBAC</span><span class="tech-tag">Testing</span></div>
+          <div class="proj-name">la35Notas — Sistema de Gestión Escolar</div>
+          <div class="proj-desc">Plataforma escolar para notas, asistencias, comunicados y boletines por email. Node.js sin dependencias, SQLite integrado, permisos por rol y 33 pruebas automáticas.</div>
+          <div class="proj-actions">
+            <a class="proj-btn primary" href="https://github.com/l-sudo-l/la35Notas" target="_blank" rel="noopener" onclick="event.stopPropagation()">Ver repo ↗</a>
+            <button class="proj-btn" onclick="event.stopPropagation();openModal('la35notas')">Detalles</button>
           </div>
         </div>
       </div>
@@ -377,6 +423,29 @@
           <div class="proj-actions">
             <a class="proj-btn primary" href="https://github.com/TomasRaiter/Multiverse_Dominion" target="_blank" rel="noopener" onclick="event.stopPropagation()">Ver repo ↗</a>
             <button class="proj-btn" onclick="event.stopPropagation();openModal('multiverse')">Detalles</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card" onclick="openModal('katapum')">
+        <div class="proj-preview prev-kata">
+          <div class="kt-hud">P1 ♥♥♥ &nbsp;·&nbsp; KATAPUM &nbsp;·&nbsp; ♥♥ P2</div>
+          <div class="kt-arena">
+            <div class="kt-wall" style="left:42%;top:10%;width:8px;height:40%"></div>
+            <div class="kt-wall" style="left:30%;top:72%;width:30%;height:8px"></div>
+            <div class="kt-wall" style="left:68%;top:40%;width:14px;height:14px;background:rgba(180,120,60,0.6)"></div>
+            <div class="kt-tank kt-t1">🛡️</div>
+            <div class="kt-tank kt-t2">🛡️</div>
+            <div class="kt-shot"></div>
+          </div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-tech"><span class="tech-tag">Java</span><span class="tech-tag">LibGDX</span><span class="tech-tag">Gradle</span><span class="tech-tag">Sockets</span><span class="java-badge">⚙ Desktop</span></div>
+          <div class="proj-name">KATAPUM</div>
+          <div class="proj-desc">Juego de tanques 2D top-down para 2 jugadores. Tres mapas con obstáculos destructibles, sprites animados, HUD, música y efectos. Hecho con LibGDX.</div>
+          <div class="proj-actions">
+            <a class="proj-btn primary" href="https://github.com/l-sudo-l/KATAPUM" target="_blank" rel="noopener" onclick="event.stopPropagation()">Ver repo ↗</a>
+            <button class="proj-btn" onclick="event.stopPropagation();openModal('katapum')">Detalles</button>
           </div>
         </div>
       </div>
@@ -517,7 +586,9 @@
 
 <script>
 const DATA = {
-  certs:{title:'Certificados — Coderhouse',tech:['HTML/CSS','JavaScript','React','Coderhouse'],java:false,collab:false,desc:'Repositorio centralizado con todos los certificados de formación académica en Coderhouse. Tres cursos completados, organizados por fecha de finalización y con sus proyectos finales incluidos.',features:['Certificado de Desarrollo Web — HTML5 y CSS3 desde cero','Certificado de JavaScript — lógica, DOM, fetch, async/await','Certificado de React — componentes, hooks, SPA con React Router','Cada certificado incluye el proyecto final aprobado y calificado','Disponibles para descarga directa desde el repositorio'],repo:'https://github.com/l-sudo-l/Certificados-CoderHouse'},
+  certs:{title:'Certificados Académicos',tech:['HTML/CSS','JavaScript','React','Coderhouse','Hackathons'],java:false,collab:false,desc:'Repositorio centralizado con mis certificados: tres cursos completados en Coderhouse y dos participaciones en hackathons y talleres de tecnología.',features:['Certificado de Desarrollo Web — HTML5 y CSS3 desde cero','Certificado de JavaScript — lógica, DOM, fetch, async/await','Certificado de React — componentes, hooks, SPA con React Router','Taller AeroHack Joven 2025 — Fundación Ciencia Joven (con Boeing y STEM Americas), realizado en la E.T. N° 35, y Expo STEAM Virtual','Navathon III 2026 — hackathon educativa de la E.T. N° 37 "Hogar Naval Stella Maris" (14 al 21 de octubre): sistema inteligente de administración del agua','Disponibles para descarga directa desde el repositorio'],repo:'https://github.com/l-sudo-l/Certificados'},
+  la35notas:{title:'la35Notas — Sistema de Gestión Escolar',tech:['Node.js 22','SQLite (node:sqlite)','JavaScript','HTML/CSS','RBAC','Testing'],java:false,collab:false,desc:'Sistema de gestión escolar completo: notas, asistencias, comunicados y boletines por email. Construido con Node.js sin dependencias externas y base de datos SQLite integrada, con cuatro roles (administrador, preceptor, profesor y alumno) y manuales de usuario para cada uno.',features:['Matriz de permisos por rol compartida entre servidor y menú','Carga de notas con borrador y cierre; correcciones con motivo e historial auditado','Cierre y reapertura de períodos con aviso de notas faltantes','Asistencia: presente, ausente, tarde (media falta) y justificada','Boletines por email con flujo borrador → revisado → enviado','Seguridad: contraseñas con scrypt, cookies HttpOnly + SameSite, bloqueo tras 5 intentos','33 pruebas automáticas de permisos y flujos'],repo:'https://github.com/l-sudo-l/la35Notas'},
+  katapum:{title:'KATAPUM — Batalla de Tanques 2D',tech:['Java 8','LibGDX','LWJGL3','Gradle','Sockets TCP/UDP','POO'],java:true,collab:false,desc:'Videojuego de tanques 2D con vista cenital. Dos jugadores se enfrentan en un mapa de batalla disparando proyectiles y usando los obstáculos como cobertura. Cada tanque tiene 3 vidas; el que las pierde todas, pierde la partida.',features:['Tres mapas: Bosque, Desierto y Ciudad abandonada','Obstáculos destructibles (cajas, barriles, paredes y vegetación) con animación por spritesheet','Movimiento tipo vehículo real: rotación sobre su eje y avance según el ángulo','Animaciones de disparo, impacto y explosión del tanque','HUD con vidas y nombres, menú de inicio y de pausa con mouse y control de volumen','Música por mapa y efectos de sonido','Lógica de partida separada del renderizado, preparada para el modo en red cliente-servidor'],repo:'https://github.com/l-sudo-l/KATAPUM'},
   lodepepe:{title:'loDePepe — E-commerce Venezolano',tech:['React','Vite','Firebase Firestore','React Router','JavaScript','CSS'],java:false,collab:false,desc:'Proyecto Final Integrador para Coderhouse. Tienda online completa de comida venezolana con catálogo, carrito de compras y generación de órdenes en tiempo real mediante Firebase Firestore.',features:['Catálogo de productos con filtros por categoría','Carrito de compras con control de cantidades por ítem','Checkout completo con número de orden en Firestore','Navegación dinámica SPA con React Router','Base de datos en tiempo real con Firebase','Diseño responsive mobile-first'],repo:'https://github.com/l-sudo-l/loDePepe'},
   fitmind:{title:'FitMind AI — Bienestar Mental',tech:['HTML5','CSS3','JavaScript'],java:false,collab:false,desc:'Plataforma multi-página de bienestar mental que combina seguimiento de salud con análisis inteligente. Diseñada para ofrecer recomendaciones personalizadas y mejorar el equilibrio emocional del usuario.',features:['Dashboard de seguimiento de salud mental','Recomendaciones personalizadas potenciadas con IA','5 páginas: inicio, servicios, about, contacto y documentación','Interfaz moderna con animaciones y UX cuidada','Sistema de seguimiento de progreso emocional','Documentación técnica integrada en la plataforma'],repo:'https://github.com/l-sudo-l/Fitmind-AI'},
   multiverse:{title:'Multiverse Dominion — Juego de Lucha 2D',tech:['Java','Java Swing','POO','Sprites PNG/GIF','AudioPlayer','IA Adaptativa'],java:true,collab:true,collabWith:'TomasRaiter',desc:'Juego de lucha 2D con personajes de distintos universos. Modo historia de 8 niveles progresivos, combate PvP, IA adaptativa con distintas dificultades, sprites animados, audio y sistema de ranking de mejores tiempos.',chars:['Darth Vader','Iron Man','Mr. Increíble','Pyke','Goku','Batman','Luke Skywalker','Naruto','Ash'],features:['Modo Historia: 8 niveles con jefe final en la Death Star','Modo PvP: combate local entre 2 jugadores','IA Adaptativa con distintos niveles de dificultad','9 personajes con sprites y sonidos únicos','Sistema de ranking top 3 mejores tiempos','60 FPS con escalado automático a pantalla completa','Cinemáticas de introducción (CinematicManager)','Guardado automático del progreso'],repo:'https://github.com/TomasRaiter/Multiverse_Dominion'},
