@@ -1,0 +1,29 @@
+/* Celulares y pantallas chicas */
+@media(max-width:640px) {
+  .hero {
+    padding: 32px 20px 24px;
+  }
+  .hero-inner {
+    gap: 16px;
+  }
+  .hero-photo, .hero-photo-wrap {
+    width: 80px;
+    height: 80px;
+  }
+  .section {
+    padding: 20px;
+  }
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  .proj-card.full {
+    grid-column: 1;
+  }
+  .contact-strip {
+    margin: 0 20px;
+  }
+  .section-duo {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}

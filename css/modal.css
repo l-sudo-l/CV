@@ -1,0 +1,145 @@
+/* Ventana de detalles de proyecto */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal {
+  background: #111;
+  border: 0.5px solid rgba(255,255,255,0.11);
+  border-radius: 18px;
+  width: 100%;
+  max-width: 680px;
+  max-height: 88vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-head {
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.5px solid rgba(255,255,255,0.07);
+}
+
+.modal-title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.modal-close {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  background: rgba(255,255,255,0.05);
+  border: 0.5px solid rgba(255,255,255,0.09);
+  color: var(--white);
+  cursor: pointer;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  background: rgba(255,255,255,0.09);
+}
+
+.modal-body {
+  padding: 22px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal-tech {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.modal-desc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 18px;
+}
+
+.modal-sect {
+  font-family: 'DM Mono',monospace;
+  font-size: 10px;
+  letter-spacing: .15em;
+  color: var(--muted);
+  margin-bottom: 9px;
+  text-transform: uppercase;
+}
+
+.modal-feat {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 0.5px solid rgba(255,255,255,0.05);
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.5;
+}
+
+.modal-feat:last-child {
+  border-bottom: none;
+}
+
+.modal-fdot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.modal-java-note {
+  background: rgba(255,140,0,0.07);
+  border: 0.5px solid rgba(255,140,0,0.18);
+  border-radius: 9px;
+  padding: 12px 15px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: rgba(255,190,80,0.8);
+  line-height: 1.55;
+}
+
+.modal-chars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.modal-char {
+  background: rgba(255,255,255,0.05);
+  border: 0.5px solid rgba(255,255,255,0.1);
+  border-radius: 7px;
+  padding: 5px 10px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  font-family: 'DM Mono',monospace;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 9px;
+  margin-top: 6px;
+}

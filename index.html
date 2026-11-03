@@ -7,235 +7,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    :root{
-      --black:#0a0a0a;--white:#fafaf8;--accent:#c8f07a;--accent2:#7af0c8;
-      --muted:#777;--border:rgba(255,255,255,0.08);
-      --card:rgba(255,255,255,0.04);--card-hover:rgba(255,255,255,0.07)
-    }
-    body{font-family:'Outfit',sans-serif;background:var(--black);color:var(--white);min-height:100vh}
-    .cv-wrap{max-width:920px;margin:0 auto;padding:0 0 80px}
-
-    .hero{padding:56px 40px 36px;position:relative;overflow:hidden}
-    .hero::before{content:'';position:absolute;top:-100px;right:-100px;width:380px;height:380px;background:radial-gradient(circle,rgba(200,240,122,0.10) 0%,transparent 70%);pointer-events:none}
-    .hero::after{content:'';position:absolute;bottom:-60px;left:-60px;width:250px;height:250px;background:radial-gradient(circle,rgba(122,240,200,0.06) 0%,transparent 70%);pointer-events:none}
-    .hero-inner{display:flex;align-items:flex-start;gap:32px;position:relative;z-index:1}
-    .hero-photo-wrap{flex-shrink:0;position:relative;width:110px;height:110px}
-    .hero-photo{width:110px;height:110px;border-radius:50%;object-fit:cover;object-position:center top;border:2px solid rgba(200,240,122,0.35);box-shadow:0 0 0 4px rgba(200,240,122,0.08),0 8px 32px rgba(0,0,0,0.5);display:block}
-    .hero-photo-ring{position:absolute;inset:-5px;border-radius:50%;border:1px solid rgba(200,240,122,0.15);animation:ringPulse 3s ease-in-out infinite;pointer-events:none}
-    @keyframes ringPulse{0%,100%{opacity:0.4;transform:scale(1)}50%{opacity:0.9;transform:scale(1.03)}}
-    .hero-text{flex:1}
-    .hero-tag{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:14px}
-    .hero-name{font-family:'DM Serif Display',serif;font-size:clamp(36px,5.5vw,58px);line-height:1.05;margin-bottom:8px}
-    .hero-name em{font-style:italic;color:var(--accent)}
-    .hero-role{font-size:12px;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-bottom:22px}
-    .hero-bio{font-size:15px;line-height:1.7;color:rgba(255,255,255,0.65);max-width:510px;margin-bottom:26px}
-    .hero-links{display:flex;gap:10px;flex-wrap:wrap}
-    .pill{display:inline-flex;align-items:center;gap:6px;padding:7px 15px;border:0.5px solid rgba(255,255,255,0.14);border-radius:99px;font-size:12px;color:rgba(255,255,255,0.65);text-decoration:none;font-family:'DM Mono',monospace;cursor:pointer;transition:all .2s;background:transparent}
-    .pill:hover{border-color:var(--accent);color:var(--accent)}
-    .pill-accent{background:var(--accent);color:var(--black);border-color:var(--accent);font-weight:600}
-    .pill-accent:hover{background:#d4f590;color:var(--black)}
-
-    .section{padding:28px 40px}
-    .section-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;display:flex;align-items:center;gap:10px}
-    .section-label::after{content:'';flex:1;height:0.5px;background:rgba(255,255,255,0.09)}
-
-    .exp-item{padding:16px 0;border-bottom:0.5px solid var(--border);display:flex;gap:18px}
-    .exp-item:last-child{border-bottom:none}
-    .exp-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:5px}
-    .exp-content{flex:1}
-    .exp-title{font-size:14px;font-weight:600;margin-bottom:2px}
-    .exp-sub{font-size:12px;color:var(--muted);margin-bottom:6px}
-    .exp-desc{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.6}
-    .exp-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);white-space:nowrap}
-
-    .edu-item{background:var(--card);border:0.5px solid var(--border);border-radius:12px;padding:15px 18px;margin-bottom:9px}
-    .edu-item:last-child{margin-bottom:0}
-    .edu-title{font-size:14px;font-weight:600;margin-bottom:2px}
-    .edu-sub{font-size:12px;color:var(--muted);margin-bottom:5px}
-    .edu-desc{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.55}
-
-    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:9px}
-    .skill-item{background:var(--card);border:0.5px solid var(--border);border-radius:10px;padding:11px 13px}
-    .skill-name{font-size:12px;font-weight:500;margin-bottom:7px}
-    .skill-bar{height:2px;background:rgba(255,255,255,0.07);border-radius:99px;overflow:hidden}
-    .skill-fill{height:100%;border-radius:99px}
-
-    .lang-row{display:flex;align-items:center;gap:14px;padding:9px 0;border-bottom:0.5px solid var(--border)}
-    .lang-row:last-child{border-bottom:none}
-    .lang-name{font-size:13px;font-weight:500;width:70px}
-    .lang-level{font-size:10px;color:var(--muted);font-family:'DM Mono',monospace}
-    .lang-dots{display:flex;gap:4px;margin-left:auto}
-    .ld{width:7px;height:7px;border-radius:50%}
-    .ld.on{background:var(--accent)}
-    .ld.off{background:rgba(255,255,255,0.09)}
-    .soft-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
-    .soft-item{background:var(--card);border:0.5px solid var(--border);border-radius:9px;padding:9px 12px;font-size:12px;display:flex;align-items:center;gap:7px}
-    .soft-dot{width:5px;height:5px;border-radius:50%;background:var(--accent2);flex-shrink:0}
-
-    .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    .proj-card{background:var(--card);border:0.5px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:all .25s}
-    .proj-card:hover{background:var(--card-hover);border-color:rgba(255,255,255,0.14);transform:translateY(-2px)}
-    .proj-card.full{grid-column:1/-1}
-    .proj-preview{height:155px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
-    .proj-card.full .proj-preview{height:180px}
-    .proj-info{padding:14px 16px}
-    .proj-tech{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
-    .tech-tag{font-family:'DM Mono',monospace;font-size:10px;padding:2px 7px;border-radius:4px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.45)}
-    .java-badge{font-family:'DM Mono',monospace;font-size:9px;padding:2px 7px;background:rgba(255,140,0,0.12);color:rgba(255,185,80,0.85);border:0.5px solid rgba(255,140,0,0.22);border-radius:4px}
-    .collab-badge{font-family:'DM Mono',monospace;font-size:9px;padding:2px 7px;background:rgba(122,240,200,0.1);color:rgba(122,240,200,0.8);border:0.5px solid rgba(122,240,200,0.2);border-radius:4px}
-    .proj-name{font-size:15px;font-weight:600;margin-bottom:4px}
-    .proj-desc{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:12px}
-    .proj-actions{display:flex;gap:7px;flex-wrap:wrap}
-    .proj-btn{font-family:'DM Mono',monospace;font-size:11px;padding:5px 13px;border-radius:8px;border:0.5px solid rgba(255,255,255,0.13);background:transparent;color:rgba(255,255,255,0.55);cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:5px}
-    .proj-btn:hover{border-color:rgba(255,255,255,0.28);color:var(--white)}
-    .proj-btn.primary{background:var(--accent);color:var(--black);border-color:var(--accent);font-weight:600}
-    .proj-btn.primary:hover{background:#d4f590}
-
-    .prev-certs{background:#faf8f2;gap:12px}
-    .cert-card{width:52px;height:62px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:1px solid rgba(0,0,0,0.07)}
-    .cert-ic{font-size:20px}
-    .cert-lbl{font-size:6.5px;font-weight:600}
-    .cert-sep{width:1px;height:48px;background:rgba(0,0,0,0.1);margin:0 2px}
-    .prev-notas{background:#0a1220;flex-direction:column;gap:8px}
-    .nt-table{width:88%;border-radius:6px;overflow:hidden;border:0.5px solid rgba(96,165,250,0.25);font-family:'DM Mono',monospace;font-size:8px}
-    .nt-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;color:rgba(255,255,255,0.55)}
-    .nt-row>div{padding:5px 7px;border-bottom:0.5px solid rgba(96,165,250,0.12)}
-    .nt-row.nt-head{background:rgba(96,165,250,0.14);color:rgba(147,197,253,0.9);letter-spacing:.06em}
-    .nt-ok{color:#86efac}.nt-low{color:#fca5a5}
-    .nt-roles{display:flex;gap:5px}
-    .nt-role{font-size:7.5px;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:20px;background:rgba(96,165,250,0.1);color:rgba(147,197,253,0.75);border:0.5px solid rgba(96,165,250,0.2)}
-    .prev-kata{background:#1a2410;flex-direction:column;gap:6px}
-    .kt-arena{width:88%;height:96px;position:relative;border-radius:6px;background:repeating-linear-gradient(0deg,rgba(255,255,255,0.025) 0 16px,transparent 16px 32px),repeating-linear-gradient(90deg,rgba(255,255,255,0.025) 0 16px,transparent 16px 32px);border:2px solid rgba(160,140,100,0.35)}
-    .kt-wall{position:absolute;background:rgba(160,140,100,0.55);border-radius:2px}
-    .kt-tank{position:absolute;font-size:18px;line-height:1}
-    .kt-t1{left:10%;top:55%;animation:ktMove1 3s ease-in-out infinite alternate}
-    .kt-t2{right:10%;top:12%;transform:scaleX(-1);animation:ktMove2 3.4s ease-in-out infinite alternate}
-    .kt-shot{position:absolute;width:6px;height:6px;border-radius:50%;background:#fde047;box-shadow:0 0 6px #fde047;top:62%;left:22%;animation:ktShot 1.6s linear infinite}
-    @keyframes ktMove1{from{top:55%}to{top:30%}}
-    @keyframes ktMove2{from{top:12%}to{top:60%}}
-    @keyframes ktShot{from{left:22%;opacity:1}to{left:80%;opacity:0}}
-    .kt-hud{font-family:'DM Mono',monospace;font-size:8px;color:rgba(253,224,71,0.6);letter-spacing:.1em}
-    .prev-ecom{background:#130820;flex-direction:column;gap:10px}
-    .pe-chrome{width:88%;height:24px;background:rgba(255,255,255,0.05);border-radius:5px;display:flex;align-items:center;padding:0 8px;gap:6px}
-    .pe-dot{width:6px;height:6px;border-radius:50%}
-    .pe-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;width:88%}
-    .pe-item{background:rgba(255,165,0,0.12);border:0.5px solid rgba(255,165,0,0.25);border-radius:5px;height:36px;display:flex;align-items:center;justify-content:center;font-size:9px;color:rgba(255,200,100,0.7);gap:3px}
-    .prev-fit{background:#071515;flex-direction:column;gap:8px}
-    .pf-title{font-family:'DM Serif Display',serif;font-size:15px;color:#7af0c8}
-    .pf-bars{display:flex;gap:4px;align-items:flex-end;height:44px}
-    .pf-bar{width:13px;border-radius:3px 3px 0 0;animation:barUp 2.2s ease-in-out infinite alternate}
-    @keyframes barUp{from{opacity:.35}to{opacity:1}}
-    .prev-mv{background:#0a0412;flex-direction:column;gap:6px}
-    .mv-title{font-family:'DM Serif Display',serif;font-size:13px;color:#c4b5fd;letter-spacing:.03em}
-    .mv-fighters{display:flex;gap:16px;align-items:center}
-    .mv-char{display:flex;flex-direction:column;align-items:center;gap:3px}
-    .mv-avatar{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;border:1px solid rgba(255,255,255,0.15)}
-    .mv-charname{font-family:'DM Mono',monospace;font-size:7px;color:rgba(255,255,255,0.4)}
-    .mv-vs{font-family:'DM Serif Display',serif;font-size:18px;color:rgba(196,181,253,0.5);font-style:italic}
-    .mv-hpbar{width:88%;display:flex;flex-direction:column;gap:3px}
-    .mv-hp-row{display:flex;align-items:center;gap:6px}
-    .mv-hp-label{font-family:'DM Mono',monospace;font-size:7px;color:rgba(255,255,255,0.35);width:24px}
-    .mv-hp-track{flex:1;height:3px;background:rgba(255,255,255,0.08);border-radius:99px;overflow:hidden}
-    .mv-hp-fill{height:100%;border-radius:99px;transition:width .8s ease}
-    .mv-badge{font-family:'DM Mono',monospace;font-size:7px;color:rgba(196,181,253,0.5)}
-    .prev-pong{background:#000}
-    .pong-arena{width:86%;height:110px;border:1px solid rgba(255,255,255,0.18);border-radius:4px;position:relative;overflow:hidden}
-    .pong-ball{width:7px;height:7px;background:#fff;border-radius:50%;position:absolute;animation:pBall 2.4s linear infinite}
-    .pong-pad{width:4px;height:28px;background:rgba(255,255,255,0.85);border-radius:2px;position:absolute;top:50%;transform:translateY(-50%)}
-    .lpad{left:7px}.rpad{right:7px}
-    .pong-mid{position:absolute;left:50%;top:0;bottom:0;border-left:2px dashed rgba(255,255,255,0.12)}
-    .pong-score{position:absolute;top:7px;width:100%;text-align:center;font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,220,0,0.6);letter-spacing:.1em}
-    @keyframes pBall{0%{left:18%;top:25%}30%{left:78%;top:58%}55%{left:18%;top:72%}80%{left:78%;top:20%}100%{left:18%;top:25%}}
-    .prev-si{background:#000;flex-direction:column;gap:6px;position:relative}
-    .si-score{font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);letter-spacing:.1em}
-    .si-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:3px;width:88%}
-    .si-alien{font-size:12px;text-align:center;animation:alienPulse 1.2s ease-in-out infinite alternate}
-    @keyframes alienPulse{from{opacity:.5;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
-    .si-cannon{font-size:16px;text-align:center;width:88%}
-    .si-laser{width:2px;height:12px;background:#0f0;border-radius:1px;position:absolute;animation:laserUp 1s linear infinite}
-    @keyframes laserUp{0%{bottom:28px;opacity:1}100%{bottom:90px;opacity:0}}
-    .prev-ark{background:#0d0020;flex-direction:column;gap:6px}
-    .ark-bricks{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;width:90%}
-    .ark-brick{height:10px;border-radius:2px;transition:opacity .3s}
-    .ark-paddle-area{width:90%;position:relative;height:28px;display:flex;align-items:flex-end}
-    .ark-paddle{width:50px;height:8px;border-radius:3px;background:rgba(200,240,122,0.9);position:absolute;left:50%;transform:translateX(-50%);animation:paddleMove 2s ease-in-out infinite alternate}
-    @keyframes paddleMove{from{left:30%}to{left:65%}}
-    .ark-ball{width:7px;height:7px;background:#fff;border-radius:50%;position:absolute;animation:arkBall 1.8s ease-in-out infinite alternate}
-    @keyframes arkBall{from{left:35%;top:-50px}to{left:60%;top:-10px}}
-
-    .contact-strip{margin:0 40px;padding:22px 26px;background:var(--card);border:0.5px solid var(--border);border-radius:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
-    .ct-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
-    .ct-email{font-size:14px;font-weight:500}
-
-    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:200;align-items:center;justify-content:center;padding:20px}
-    .modal-overlay.open{display:flex}
-    .modal{background:#111;border:0.5px solid rgba(255,255,255,0.11);border-radius:18px;width:100%;max-width:680px;max-height:88vh;overflow:hidden;display:flex;flex-direction:column}
-    .modal-head{padding:18px 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:0.5px solid rgba(255,255,255,0.07)}
-    .modal-title{font-size:15px;font-weight:600}
-    .modal-close{width:30px;height:30px;border-radius:7px;background:rgba(255,255,255,0.05);border:0.5px solid rgba(255,255,255,0.09);color:var(--white);cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center}
-    .modal-close:hover{background:rgba(255,255,255,0.09)}
-    .modal-body{padding:22px;overflow-y:auto;flex:1}
-    .modal-tech{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
-    .modal-desc{font-size:14px;line-height:1.7;color:rgba(255,255,255,0.65);margin-bottom:18px}
-    .modal-sect{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--muted);margin-bottom:9px;text-transform:uppercase}
-    .modal-feat{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:0.5px solid rgba(255,255,255,0.05);font-size:13px;color:rgba(255,255,255,0.6);line-height:1.5}
-    .modal-feat:last-child{border-bottom:none}
-    .modal-fdot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:5px}
-    .modal-java-note{background:rgba(255,140,0,0.07);border:0.5px solid rgba(255,140,0,0.18);border-radius:9px;padding:12px 15px;margin-bottom:16px;font-size:13px;color:rgba(255,190,80,0.8);line-height:1.55}
-    .modal-chars{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
-    .modal-char{background:rgba(255,255,255,0.05);border:0.5px solid rgba(255,255,255,0.1);border-radius:7px;padding:5px 10px;font-size:11px;color:rgba(255,255,255,0.55);font-family:'DM Mono',monospace}
-    .modal-actions{display:flex;gap:9px;margin-top:6px}
-
-    .print-btn{position:fixed;bottom:22px;right:22px;display:flex;align-items:center;gap:8px;padding:11px 20px;background:var(--accent);color:var(--black);border:none;border-radius:99px;font-family:'DM Mono',monospace;font-size:12px;font-weight:600;cursor:pointer;box-shadow:0 4px 18px rgba(200,240,122,0.25);z-index:100}
-    .print-btn:hover{background:#d4f590}
-
-    @media(max-width:640px){
-      .hero{padding:32px 20px 24px}
-      .hero-inner{gap:16px}
-      .hero-photo,.hero-photo-wrap{width:80px;height:80px}
-      .section{padding:20px}
-      .projects-grid{grid-template-columns:1fr}
-      .proj-card.full{grid-column:1}
-      .contact-strip{margin:0 20px}
-    }
-
-
-    @media print{
-      .print-btn,.modal-overlay{display:none!important}
-      *{
-        -webkit-print-color-adjust:exact!important;
-        print-color-adjust:exact!important;
-        color-adjust:exact!important;
-      }
-      html,body{background:#0a0a0a!important;color:#fafaf8!important}
-      .cv-wrap{max-width:100%;padding-bottom:0}
-      .hero-photo-ring{display:none}
-      .edu-item,.skill-item,.soft-item,.proj-card,.contact-strip{
-        background:rgba(255,255,255,0.04)!important;
-        border-color:rgba(255,255,255,0.08)!important;
-      }
-      .prev-certs{background:#faf8f2!important}
-      .prev-ecom{background:#130820!important}
-      .prev-fit{background:#071515!important}
-      .prev-mv{background:#0a0412!important}
-      .prev-pong,.prev-si{background:#000!important}
-      .prev-ark{background:#0d0020!important}
-      .prev-notas{background:#0a1220!important}
-      .prev-kata{background:#1a2410!important}
-      .hero-tag,.section-label{color:#c8f07a!important}
-      .hero-name em{color:#c8f07a!important}
-      .pill-accent{background:#c8f07a!important;color:#0a0a0a!important;border-color:#c8f07a!important}
-      .soft-dot{background:#7af0c8!important}
-      .ld.on{background:#c8f07a!important}
-      .ld.off{background:rgba(255,255,255,0.09)!important}
-      .tech-tag{background:rgba(255,255,255,0.06)!important;color:rgba(255,255,255,0.45)!important}
-      .java-badge{background:rgba(255,140,0,0.12)!important;color:rgba(255,185,80,0.85)!important}
-      .collab-badge{background:rgba(122,240,200,0.1)!important;color:rgba(122,240,200,0.8)!important}
-      .proj-card,.edu-item,.exp-item{page-break-inside:avoid;break-inside:avoid}
-    }
-  </style>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/secciones.css">
+  <link rel="stylesheet" href="css/proyectos.css">
+  <link rel="stylesheet" href="css/previews.css">
+  <link rel="stylesheet" href="css/modal.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/print.css">
+  <script src="js/datos.js" defer></script>
+  <script src="js/modal.js" defer></script>
+  <script src="js/animaciones.js" defer></script>
 </head>
 <body>
 
@@ -245,7 +27,7 @@
     <div class="hero-inner">
       <div class="hero-photo-wrap">
         <div class="hero-photo-ring"></div>
-        <img class="hero-photo" src="profile.png" alt="Luis Rodriguez">
+        <img class="hero-photo" src="img/profile.png" alt="Luis Rodriguez">
       </div>
       <div class="hero-text">
         <div class="hero-tag">// Full Stack Developer · Game Dev · Buenos Aires, AR</div>
@@ -256,7 +38,7 @@
           <a class="pill pill-accent" href="mailto:luis.manuel.rodridguez.0827@gmail.com">✉ Contactar</a>
           <a class="pill" href="https://github.com/l-sudo-l" target="_blank">⌥ GitHub</a>
           <a class="pill" href="https://www.linkedin.com/in/luis-manuel-rodriguez-m%C3%A1rquez-b2208729b/" target="_blank">in LinkedIn</a>
-          <button class="pill" onclick="window.print()">⎙ PDF</button>
+          <button class="pill" data-accion="imprimir">⎙ PDF</button>
         </div>
       </div>
     </div>
@@ -306,13 +88,21 @@
       <div class="edu-sub">Coderhouse — Online</div>
       <div class="edu-desc">Frontend (HTML, CSS, JS, React) y backend (Node.js). Proyectos prácticos con mentoreo, revisiones de código y proyecto final integrador.</div>
     </div>
+    <div class="edu-item">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:2px">
+        <div class="edu-title">Programación AI-First — Stage 2</div>
+        <div class="exp-date">2026</div>
+      </div>
+      <div class="edu-sub">Generación T — Bootcamp</div>
+      <div class="edu-desc">Desarrollo full stack asistido por IA: spec, plan técnico, trabajo por tareas, testing y despliegue. Proyecto final: TaskFlow, app publicada con React, Node.js y PostgreSQL.</div>
+    </div>
   </div>
 
   <div class="section">
-    <div class="section-label">Proyectos — 10 repositorios</div>
+    <div class="section-label">Proyectos — 11 repositorios</div>
     <div class="projects-grid">
 
-      <div class="proj-card full" onclick="openModal('certs')">
+      <div class="proj-card full" data-proyecto="certs">
         <div class="proj-preview prev-certs">
           <div class="cert-card" style="background:#fff8e1"><div class="cert-ic">📄</div><div class="cert-lbl" style="color:#e65100">HTML/CSS</div></div>
           <div class="cert-card" style="background:#fffde7"><div class="cert-ic">⚡</div><div class="cert-lbl" style="color:#f57f17">JavaScript</div></div>
@@ -326,13 +116,34 @@
           <div class="proj-name">Certificados Académicos</div>
           <div class="proj-desc">Repositorio centralizado con todos mis certificados: cursos de HTML/CSS, JavaScript y React en Coderhouse, más el Taller AeroHack Joven 2025 y la hackathon Navathon III 2026.</div>
           <div class="proj-actions">
-            <a class="proj-btn primary" href="https://github.com/l-sudo-l/Certificados" target="_blank" rel="noopener" onclick="event.stopPropagation()">Ver certificados ↗</a>
-            <button class="proj-btn" onclick="event.stopPropagation();openModal('certs')">Detalles</button>
+            <a class="proj-btn primary" href="https://github.com/l-sudo-l/Certificados" target="_blank" rel="noopener">Ver certificados ↗</a>
+            <button class="proj-btn">Detalles</button>
           </div>
         </div>
       </div>
 
-      <div class="proj-card full" onclick="openModal('lodepepe')">
+      <div class="proj-card full" data-proyecto="taskflow">
+        <div class="proj-preview prev-tf">
+          <div class="tf-head"><span>TASKFLOW · MIS TAREAS</span><span class="tf-focus">En progreso 2 / 3</span></div>
+          <div class="tf-cols">
+            <div class="tf-col"><div class="tf-col-t">PENDIENTE</div><div class="tf-task tf-late">⚠ Entregar informe</div><div class="tf-task">Estudiar redes</div></div>
+            <div class="tf-col"><div class="tf-col-t">EN PROGRESO</div><div class="tf-task">Deploy API</div><div class="tf-task">Tests de auth</div></div>
+            <div class="tf-col"><div class="tf-col-t">COMPLETADA</div><div class="tf-task tf-done">Escribir spec</div><div class="tf-task tf-done">Plan técnico</div></div>
+          </div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-tech"><span class="tech-tag">React 18</span><span class="tech-tag">Vite</span><span class="tech-tag">Node.js</span><span class="tech-tag">PostgreSQL</span><span class="tech-tag">Netlify · Render · Neon</span><span class="tech-tag">AI-First</span><span class="collab-badge">● En producción</span></div>
+          <div class="proj-name">TaskFlow — Gestor de Tareas Full Stack</div>
+          <div class="proj-desc">App web publicada para organizar tareas con límite de foco (máximo 3 en progreso), vencidas primero, filtros y cuentas de usuario. Frontend en React, API en Node.js y PostgreSQL. Proyecto final de Generación T.</div>
+          <div class="proj-actions">
+            <a class="proj-btn primary" href="https://taskflow-luis.netlify.app" target="_blank" rel="noopener">Ver app ↗</a>
+            <a class="proj-btn" href="https://github.com/l-sudo-l/TaskFlow" target="_blank" rel="noopener">Ver repo ↗</a>
+            <button class="proj-btn">Detalles</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card full" data-proyecto="lodepepe">
         <div class="proj-preview prev-ecom">
           <div class="pe-chrome">
             <div class="pe-dot" style="background:#ff5f57"></div>
@@ -350,13 +161,13 @@
           <div class="proj-name">loDePepe — E-commerce de Comida Venezolana</div>
           <div class="proj-desc">Tienda online completa: catálogo, carrito de compras, checkout y órdenes en tiempo real con Firestore. Proyecto Final Integrador Coderhouse.</div>
           <div class="proj-actions">
-            <a class="proj-btn primary" href="https://github.com/l-sudo-l/loDePepe" target="_blank" rel="noopener" onclick="event.stopPropagation()">Ver repo ↗</a>
-            <button class="proj-btn" onclick="event.stopPropagation();openModal('lodepepe')">Detalles</button>
+            <a class="proj-btn primary" href="https://github.com/l-sudo-l/loDePepe" target="_blank" rel="noopener">Ver repo ↗</a>
+            <button class="proj-btn">Detalles</button>
           </div>
         </div>
       </div>
 
-      <div class="proj-card full" onclick="openModal('la35notas')">
+      <div class="proj-card full" data-proyecto="la35notas">
         <div class="proj-preview prev-notas">
           <div class="nt-roles"><span class="nt-role">Admin</span><span class="nt-role">Preceptor</span><span class="nt-role">Profesor</span><span class="nt-role">Alumno</span></div>
           <div class="nt-table">
@@ -371,13 +182,13 @@
           <div class="proj-name">la35Notas — Sistema de Gestión Escolar</div>
           <div class="proj-desc">Plataforma escolar para notas, asistencias, comunicados y boletines por email. Node.js sin dependencias, SQLite integrado, permisos por rol y 33 pruebas automáticas.</div>
           <div class="proj-actions">
-            <a class="proj-btn primary" href="https://github.com/l-sudo-l/la35Notas" target="_blank" rel="noopener" onclick="event.stopPropagation()">Ver repo ↗</a>
-            <button class="proj-btn" onclick="event.stopPropagation();openModal('la35notas')">Detalles</button>
+            <a class="proj-btn primary" href="https://github.com/l-sudo-l/la35Notas" target="_blank" rel="noopener">Ver repo ↗</a>
+            <button class="proj-btn">Detalles</button>
           </div>
         </div>
       </div>
 
-      <div class="proj-card" onclick="openModal('fitmind')">
+      <div class="proj-card" data-proyecto="fitmind">
         <div class="proj-preview prev-fit">
           <div class="pf-title">FitMind AI</div>
           <div class="pf-bars">
@@ -396,13 +207,13 @@
           <div class="proj-name">FitMind AI</div>
           <div class="proj-desc">Plataforma de bienestar mental con análisis inteligente y recomendaciones personalizadas. Multi-página con interfaz moderna.</div>
           <div class="proj-actions">
-            <a class="proj-btn primary" href="https://github.com/l-sudo-l/Fitmind-AI" target="_blank" rel="noopener" onclick="event.stopPropagation()">Ver repo ↗</a>
-            <button class="proj-btn" onclick="event.stopPropagation();openModal('fitmind')">Detalles</button>
+            <a class="proj-btn primary" href="https://github.com/l-sudo-l/Fitmind-AI" target="_blank" rel="noopener">Ver repo ↗</a>
+            <button class="proj-btn">Detalles</button>
           </div>
         </div>
       </div>
 
-      <div class="proj-card" onclick="openModal('multiverse')">
+      <div class="proj-card" data-proyecto="multiverse">
         <div class="proj-preview prev-mv">
           <div class="mv-title">Multiverse Dominion</div>
           <div class="mv-fighters">
@@ -421,13 +232,13 @@
           <div class="proj-name">Multiverse Dominion</div>
           <div class="proj-desc">Juego de lucha 2D: Goku, Darth Vader, Iron Man, Naruto, Batman y más. Modo historia 8 niveles, PvP, IA adaptativa y ranking. Collab con TomasRaiter.</div>
           <div class="proj-actions">
-            <a class="proj-btn primary" href="https://github.com/TomasRaiter/Multiverse_Dominion" target="_blank" rel="noopener" onclick="event.stopPropagation()">Ver repo ↗</a>
-            <button class="proj-btn" onclick="event.stopPropagation();openModal('multiverse')">Detalles</button>
+            <a class="proj-btn primary" href="https://github.com/TomasRaiter/Multiverse_Dominion" target="_blank" rel="noopener">Ver repo ↗</a>
+            <button class="proj-btn">Detalles</button>
           </div>
         </div>
       </div>
 
-      <div class="proj-card" onclick="openModal('katapum')">
+      <div class="proj-card" data-proyecto="katapum">
         <div class="proj-preview prev-kata">
           <div class="kt-hud">P1 ♥♥♥ &nbsp;·&nbsp; KATAPUM &nbsp;·&nbsp; ♥♥ P2</div>
           <div class="kt-arena">
@@ -444,13 +255,13 @@
           <div class="proj-name">KATAPUM</div>
           <div class="proj-desc">Juego de tanques 2D top-down para 2 jugadores. Tres mapas con obstáculos destructibles, sprites animados, HUD, música y efectos. Hecho con LibGDX.</div>
           <div class="proj-actions">
-            <a class="proj-btn primary" href="https://github.com/l-sudo-l/KATAPUM" target="_blank" rel="noopener" onclick="event.stopPropagation()">Ver repo ↗</a>
-            <button class="proj-btn" onclick="event.stopPropagation();openModal('katapum')">Detalles</button>
+            <a class="proj-btn primary" href="https://github.com/l-sudo-l/KATAPUM" target="_blank" rel="noopener">Ver repo ↗</a>
+            <button class="proj-btn">Detalles</button>
           </div>
         </div>
       </div>
 
-      <div class="proj-card" onclick="openModal('starpong')">
+      <div class="proj-card" data-proyecto="starpong">
         <div class="proj-preview prev-pong">
           <div class="pong-arena">
             <div class="pong-ball"></div>
@@ -465,13 +276,13 @@
           <div class="proj-name">StarPong</div>
           <div class="proj-desc">Versión Star Wars del Pong clásico. Física de rebote dinámica, hilos para el ciclo de juego e interfaz gráfica con Java Swing.</div>
           <div class="proj-actions">
-            <a class="proj-btn primary" href="https://github.com/l-sudo-l/StarPong" target="_blank" rel="noopener" onclick="event.stopPropagation()">Ver repo ↗</a>
-            <button class="proj-btn" onclick="event.stopPropagation();openModal('starpong')">Detalles</button>
+            <a class="proj-btn primary" href="https://github.com/l-sudo-l/StarPong" target="_blank" rel="noopener">Ver repo ↗</a>
+            <button class="proj-btn">Detalles</button>
           </div>
         </div>
       </div>
 
-      <div class="proj-card" onclick="openModal('spaceinvaders')">
+      <div class="proj-card" data-proyecto="spaceinvaders">
         <div class="proj-preview prev-si">
           <div class="si-score">SCORE: 1480 &nbsp;|&nbsp; LIVES: ♥ ♥ ♥</div>
           <div class="si-grid">
@@ -486,13 +297,13 @@
           <div class="proj-name">Space Invaders</div>
           <div class="proj-desc">Recreación del icónico Space Invaders. Gestión de múltiples entidades en pantalla, lógica de combate arcade y comportamiento grupal de enemigos.</div>
           <div class="proj-actions">
-            <a class="proj-btn primary" href="https://github.com/l-sudo-l/SpaceInvaders" target="_blank" rel="noopener" onclick="event.stopPropagation()">Ver repo ↗</a>
-            <button class="proj-btn" onclick="event.stopPropagation();openModal('spaceinvaders')">Detalles</button>
+            <a class="proj-btn primary" href="https://github.com/l-sudo-l/SpaceInvaders" target="_blank" rel="noopener">Ver repo ↗</a>
+            <button class="proj-btn">Detalles</button>
           </div>
         </div>
       </div>
 
-      <div class="proj-card" onclick="openModal('arkanoid')">
+      <div class="proj-card" data-proyecto="arkanoid">
         <div class="proj-preview prev-ark">
           <div class="ark-bricks" id="arkBricks"></div>
           <div class="ark-paddle-area">
@@ -505,8 +316,8 @@
           <div class="proj-name">Arkanoid</div>
           <div class="proj-desc">Clásico Arkanoid con dificultad progresiva. Lógica de colisiones, aceleración por niveles y manejo de estados con POO y Java Swing.</div>
           <div class="proj-actions">
-            <a class="proj-btn primary" href="https://github.com/l-sudo-l/Arkanoid" target="_blank" rel="noopener" onclick="event.stopPropagation()">Ver repo ↗</a>
-            <button class="proj-btn" onclick="event.stopPropagation();openModal('arkanoid')">Detalles</button>
+            <a class="proj-btn primary" href="https://github.com/l-sudo-l/Arkanoid" target="_blank" rel="noopener">Ver repo ↗</a>
+            <button class="proj-btn">Detalles</button>
           </div>
         </div>
       </div>
@@ -532,7 +343,7 @@
     </div>
   </div>
 
-  <div class="section" style="display:grid;grid-template-columns:1fr 1fr;gap:36px">
+  <div class="section section-duo">
     <div>
       <div class="section-label" style="margin-bottom:14px">Habilidades Blandas</div>
       <div class="soft-grid">
@@ -572,71 +383,17 @@
   </div>
 </div>
 
-<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+<div class="modal-overlay" id="modal">
   <div class="modal">
     <div class="modal-head">
       <div class="modal-title" id="modal-title"></div>
-      <button class="modal-close" onclick="closeModal()">×</button>
+      <button class="modal-close" data-accion="cerrar" aria-label="Cerrar">×</button>
     </div>
     <div class="modal-body" id="modal-body"></div>
   </div>
 </div>
 
-<button class="print-btn" onclick="window.print()">⎙ Guardar PDF</button>
+<button class="print-btn" data-accion="imprimir">⎙ Guardar PDF</button>
 
-<script>
-const DATA = {
-  certs:{title:'Certificados Académicos',tech:['HTML/CSS','JavaScript','React','Coderhouse','Hackathons'],java:false,collab:false,desc:'Repositorio centralizado con mis certificados: tres cursos completados en Coderhouse y dos participaciones en hackathons y talleres de tecnología.',features:['Certificado de Desarrollo Web — HTML5 y CSS3 desde cero','Certificado de JavaScript — lógica, DOM, fetch, async/await','Certificado de React — componentes, hooks, SPA con React Router','Taller AeroHack Joven 2025 — Fundación Ciencia Joven (con Boeing y STEM Americas), realizado en la E.T. N° 35, y Expo STEAM Virtual','Navathon III 2026 — hackathon educativa de la E.T. N° 37 "Hogar Naval Stella Maris" (14 al 21 de octubre): sistema inteligente de administración del agua','Disponibles para descarga directa desde el repositorio'],repo:'https://github.com/l-sudo-l/Certificados'},
-  la35notas:{title:'la35Notas — Sistema de Gestión Escolar',tech:['Node.js 22','SQLite (node:sqlite)','JavaScript','HTML/CSS','RBAC','Testing'],java:false,collab:false,desc:'Sistema de gestión escolar completo: notas, asistencias, comunicados y boletines por email. Construido con Node.js sin dependencias externas y base de datos SQLite integrada, con cuatro roles (administrador, preceptor, profesor y alumno) y manuales de usuario para cada uno.',features:['Matriz de permisos por rol compartida entre servidor y menú','Carga de notas con borrador y cierre; correcciones con motivo e historial auditado','Cierre y reapertura de períodos con aviso de notas faltantes','Asistencia: presente, ausente, tarde (media falta) y justificada','Boletines por email con flujo borrador → revisado → enviado','Seguridad: contraseñas con scrypt, cookies HttpOnly + SameSite, bloqueo tras 5 intentos','33 pruebas automáticas de permisos y flujos'],repo:'https://github.com/l-sudo-l/la35Notas'},
-  katapum:{title:'KATAPUM — Batalla de Tanques 2D',tech:['Java 8','LibGDX','LWJGL3','Gradle','Sockets TCP/UDP','POO'],java:true,collab:false,desc:'Videojuego de tanques 2D con vista cenital. Dos jugadores se enfrentan en un mapa de batalla disparando proyectiles y usando los obstáculos como cobertura. Cada tanque tiene 3 vidas; el que las pierde todas, pierde la partida.',features:['Tres mapas: Bosque, Desierto y Ciudad abandonada','Obstáculos destructibles (cajas, barriles, paredes y vegetación) con animación por spritesheet','Movimiento tipo vehículo real: rotación sobre su eje y avance según el ángulo','Animaciones de disparo, impacto y explosión del tanque','HUD con vidas y nombres, menú de inicio y de pausa con mouse y control de volumen','Música por mapa y efectos de sonido','Lógica de partida separada del renderizado, preparada para el modo en red cliente-servidor'],repo:'https://github.com/l-sudo-l/KATAPUM'},
-  lodepepe:{title:'loDePepe — E-commerce Venezolano',tech:['React','Vite','Firebase Firestore','React Router','JavaScript','CSS'],java:false,collab:false,desc:'Proyecto Final Integrador para Coderhouse. Tienda online completa de comida venezolana con catálogo, carrito de compras y generación de órdenes en tiempo real mediante Firebase Firestore.',features:['Catálogo de productos con filtros por categoría','Carrito de compras con control de cantidades por ítem','Checkout completo con número de orden en Firestore','Navegación dinámica SPA con React Router','Base de datos en tiempo real con Firebase','Diseño responsive mobile-first'],repo:'https://github.com/l-sudo-l/loDePepe'},
-  fitmind:{title:'FitMind AI — Bienestar Mental',tech:['HTML5','CSS3','JavaScript'],java:false,collab:false,desc:'Plataforma multi-página de bienestar mental que combina seguimiento de salud con análisis inteligente. Diseñada para ofrecer recomendaciones personalizadas y mejorar el equilibrio emocional del usuario.',features:['Dashboard de seguimiento de salud mental','Recomendaciones personalizadas potenciadas con IA','5 páginas: inicio, servicios, about, contacto y documentación','Interfaz moderna con animaciones y UX cuidada','Sistema de seguimiento de progreso emocional','Documentación técnica integrada en la plataforma'],repo:'https://github.com/l-sudo-l/Fitmind-AI'},
-  multiverse:{title:'Multiverse Dominion — Juego de Lucha 2D',tech:['Java','Java Swing','POO','Sprites PNG/GIF','AudioPlayer','IA Adaptativa'],java:true,collab:true,collabWith:'TomasRaiter',desc:'Juego de lucha 2D con personajes de distintos universos. Modo historia de 8 niveles progresivos, combate PvP, IA adaptativa con distintas dificultades, sprites animados, audio y sistema de ranking de mejores tiempos.',chars:['Darth Vader','Iron Man','Mr. Increíble','Pyke','Goku','Batman','Luke Skywalker','Naruto','Ash'],features:['Modo Historia: 8 niveles con jefe final en la Death Star','Modo PvP: combate local entre 2 jugadores','IA Adaptativa con distintos niveles de dificultad','9 personajes con sprites y sonidos únicos','Sistema de ranking top 3 mejores tiempos','60 FPS con escalado automático a pantalla completa','Cinemáticas de introducción (CinematicManager)','Guardado automático del progreso'],repo:'https://github.com/TomasRaiter/Multiverse_Dominion'},
-  starpong:{title:'StarPong — Star Wars Ping Pong',tech:['Java','Java Swing','POO','Multithreading','Física 2D'],java:true,collab:false,desc:'Versión temática de Star Wars del clásico juego Pong. Desarrollado 100% en Java con POO. Usa hilos para el ciclo de juego e interfaz gráfica con Java Swing.',features:['Física de rebote dinámica para la pelota','Manejo de hilos (Threads) para el loop del juego','Interfaz gráfica construida con Java Swing','Temática visual inspirada en Star Wars','Sistema de puntuación y niveles de dificultad progresivos','Implementación completa de POO'],repo:'https://github.com/l-sudo-l/StarPong'},
-  spaceinvaders:{title:'Space Invaders',tech:['Java','POO','Arquitectura de Software','Arcade'],java:true,collab:false,desc:'Recreación del icónico Space Invaders enfocada en la gestión de múltiples entidades en pantalla y la lógica de combate arcade. Ejercicio avanzado de arquitectura de software para controlar el comportamiento grupal de los enemigos.',features:['Gestión de múltiples entidades simultáneas en pantalla','Lógica de combate arcade fiel al original','Comportamiento grupal y sincronizado de los enemigos','Sistema de disparos del jugador y colisiones','Arquitectura de software orientada a entidades','Incremento de velocidad enemiga conforme avanza el juego'],repo:'https://github.com/l-sudo-l/SpaceInvaders'},
-  arkanoid:{title:'Arkanoid',tech:['Java','Java Swing','POO','Lógica de Colisiones','Dificultad Progresiva'],java:true,collab:false,desc:'Clásico Arkanoid en Java con sistema de dificultad progresiva. Implementa lógica de colisiones completa, aceleración de velocidad por niveles y manejo de estados mediante POO y Java Swing. Incluye persistencia del récord en archivo.',features:['Sistema de colisiones pelota-bloque y pelota-paleta','Dificultad progresiva: la pelota acelera con cada nivel','Manejo de estados del juego (juego, pausa, game over, victoria)','Persistencia del récord máximo en archivo record.txt','Interfaz gráfica fluida con Java Swing','Diseño orientado a objetos con POO bien estructurada'],repo:'https://github.com/l-sudo-l/Arkanoid'}
-};
-
-function openModal(id){
-  const m=DATA[id];if(!m)return;
-  document.getElementById('modal-title').textContent=m.title;
-  let h='<div class="modal-tech">'+m.tech.map(t=>`<span class="tech-tag">${t}</span>`).join('');
-  if(m.java)h+='<span class="java-badge" style="margin-left:2px">⚙ Desktop App</span>';
-  if(m.collab)h+=`<span class="collab-badge" style="margin-left:2px">★ Collab con ${m.collabWith}</span>`;
-  h+='</div>';
-  if(m.java)h+='<div class="modal-java-note">⚙ Aplicación de escritorio Java. Para ejecutarla necesitás clonar el repo y tener Java instalado. No corre en el navegador — pero podés ver todo el código fuente en GitHub.</div>';
-  h+=`<p class="modal-desc">${m.desc}</p>`;
-  if(m.chars){h+='<div class="modal-sect">Personajes jugables</div><div class="modal-chars">';m.chars.forEach(c=>{h+=`<div class="modal-char">${c}</div>`;});h+='</div>';}
-  h+='<div class="modal-sect">Funcionalidades destacadas</div><div>';
-  m.features.forEach(f=>{h+=`<div class="modal-feat"><div class="modal-fdot"></div><span>${f}</span></div>`;});
-  h+=`</div><div class="modal-actions"><a class="proj-btn primary" href="${m.repo}" target="_blank" rel="noopener noreferrer">Ver en GitHub ↗</a></div>`;
-  document.getElementById('modal-body').innerHTML=h;
-  document.getElementById('modal').classList.add('open');
-}
-function closeModal(){document.getElementById('modal').classList.remove('open');}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
-
-setInterval(()=>{
-  const h1=document.getElementById('hp1'),h2=document.getElementById('hp2');
-  if(h1&&h2){h1.style.width=(40+Math.floor(Math.random()*50))+'%';h2.style.width=(40+Math.floor(Math.random()*50))+'%';}
-},1800);
-
-const colors=['#ef4444','#f97316','#eab308','#22c55e','#3b82f6','#a855f7'];
-const bricksEl=document.getElementById('arkBricks');
-if(bricksEl){
-  for(let i=0;i<21;i++){
-    const b=document.createElement('div');
-    b.className='ark-brick';
-    b.style.background=colors[Math.floor(i/7)%colors.length];
-    b.style.opacity=Math.random()>0.15?'0.85':'0';
-    bricksEl.appendChild(b);
-  }
-  setInterval(()=>{
-    const bricks=bricksEl.children;
-    const idx=Math.floor(Math.random()*bricks.length);
-    if(parseFloat(bricks[idx].style.opacity)>0)bricks[idx].style.opacity='0';
-  },900);
-}
-</script>
 </body>
 </html>

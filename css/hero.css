@@ -1,0 +1,154 @@
+/* Encabezado: foto, nombre, bio y links */
+.hero {
+  padding: 56px 40px 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle,rgba(200,240,122,0.10) 0%,transparent 70%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: -60px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle,rgba(122,240,200,0.06) 0%,transparent 70%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-photo-wrap {
+  flex-shrink: 0;
+  position: relative;
+  width: 110px;
+  height: 110px;
+}
+
+.hero-photo {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 2px solid rgba(200,240,122,0.35);
+  box-shadow: 0 0 0 4px rgba(200,240,122,0.08),0 8px 32px rgba(0,0,0,0.5);
+  display: block;
+}
+
+.hero-photo-ring {
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1px solid rgba(200,240,122,0.15);
+  animation: ringPulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes ringPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.03);
+  }
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-tag {
+  font-family: 'DM Mono',monospace;
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.hero-name {
+  font-family: 'DM Serif Display',serif;
+  font-size: clamp(36px,5.5vw,58px);
+  line-height: 1.05;
+  margin-bottom: 8px;
+}
+
+.hero-name em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-role {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
+.hero-bio {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.65);
+  max-width: 510px;
+  margin-bottom: 26px;
+}
+
+.hero-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 15px;
+  border: 0.5px solid rgba(255,255,255,0.14);
+  border-radius: 99px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  font-family: 'DM Mono',monospace;
+  cursor: pointer;
+  transition: all .2s;
+  background: transparent;
+}
+
+.pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.pill-accent {
+  background: var(--accent);
+  color: var(--black);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+.pill-accent:hover {
+  background: #d4f590;
+  color: var(--black);
+}
